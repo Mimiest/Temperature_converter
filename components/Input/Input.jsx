@@ -7,7 +7,7 @@ export function Input({ defaultValue, onChange, unit }) {
       <TextInput
         placeholder="Type temperature"
         style={s.input}
-        maxLength={3}
+        maxLength={4}
         defaultValue={defaultValue.toString()}
         onChangeText={(text) => {
           onChange(text);
