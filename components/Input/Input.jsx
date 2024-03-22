@@ -1,8 +1,7 @@
 import { TextInput } from "react-native";
-import s from "./Input.style";
+import { s } from "./Input.style";
 
-export function Input(defaultValue) {}
-{
+export function Input({ defaultValue, onChange, unit }) {
   return (
     <view style={s.inputview}>
       <TextInput
@@ -10,8 +9,11 @@ export function Input(defaultValue) {}
         style={s.input}
         maxLength={3}
         defaultValue={defaultValue.toString()}
+        onChangeText={(text) => {
+          onChange(text);
+        }}
       />
-      <Text style="s.unit">°C</Text>
+      <Text style="s.unit">{unit}</Text>
     </view>
   );
 }
