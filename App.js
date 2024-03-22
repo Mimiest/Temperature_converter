@@ -5,6 +5,7 @@ import hotBackgount from "./assets/hot.png";
 import coldBackground from "./assets/cold.png";
 import { Input } from "./components/Input/Input";
 import { DisplayTemperature } from "./components/DisplayTemperature/DisplayTemperature";
+import { Buttonconvert } from "./components/buttonconvert/buttonconvert";
 import {
   units,
   convertTemperatureTo,
@@ -35,7 +36,9 @@ export default function App() {
             defaultValue={inputValue}
             onChange={setInputValue}
           />
-          <>Button</>
+          <Buttonconvert unit={currentUnit} onPress={ ()=>
+           { setcurrentUnit(opositeunit)}
+            }/>
         </SafeAreaView>
       </SafeAreaProvider>
     </ImageBackground>
