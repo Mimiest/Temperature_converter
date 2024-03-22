@@ -20,16 +20,17 @@ export default function App() {
   const opositeunit = getOppositeunit(currentUnit);
   const [currentBackground, setCurrentBackground] = useState(coldBackground);
 
-useEffect( ()=> {
-  const isCold = isIceTemperature(inputValue,currentUnit)
-  setCurrentBackground(isCold ? coldBackground : hotBackgount)
-}, [inputValue, currentUnit])
+  useEffect(() => {
+    const isCold = isIceTemperature(inputValue, currentUnit);
+    setCurrentBackground(isCold ? coldBackground : hotBackgount);
+  }, [inputValue, currentUnit]);
 
-  function check_converted_temperature ()
-  {
-    if (isNaN(inputValue))
-    {return ""}
-    else return {convertTemperatureTo(inputValue, opositeunit).toFixed(2)}
+  function check_converted_temperature() {
+    if (isNaN(inputValue)) {
+      return "";
+    } else {
+      return convertTemperatureTo(inputValue, opositeunit).toFixed(1);
+    }
   }
   return (
     <ImageBackground source={currentBackground} style={s.BackgroungImg}>
@@ -37,16 +38,20 @@ useEffect( ()=> {
         <SafeAreaView style={s.root}>
           <View style={s.workspace}></View>
           <DisplayTemperature
-            temperature= {check_converted_temperature()} unit={opositeunit}
+            temperature={check_converted_temperature()}
+            unit={opositeunit}
           />
           <Input
             unit={currentUnit}
             defaultValue={inputValue}
             onChange={setInputValue}
           />
-          <Buttonconvert unit={currentUnit} onPress={ ()=>
-           { setcurrentUnit(opositeunit)}
-            }/>
+          <Buttonconvert
+            unit={currentUnit}
+            onPress={() => {
+              setcurrentUnit(opositeunit);
+            }}
+          />
         </SafeAreaView>
       </SafeAreaProvider>
     </ImageBackground>
