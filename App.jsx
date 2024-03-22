@@ -10,13 +10,21 @@ import {
   units,
   convertTemperatureTo,
   getOppositeunit,
+  isIceTemperature,
 } from "./utils/temperature";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
   const [inputValue, setInputValue] = useState(0);
   const [currentUnit, setcurrentUnit] = useState("°C");
   const opositeunit = getOppositeunit(currentUnit);
+  const [currentBackground, setCurrentBackground] = useState(coldBackground);
+
+useEffect( ()=> {
+  const isCold = isIceTemperature(inputValue,currentUnit)
+  setCurrentBackground(isCold ? coldBackground : hotBackgount)
+}, [inputValue, currentUnit])
+
   function check_converted_temperature ()
   {
     if (isNaN(inputValue))
@@ -24,7 +32,7 @@ export default function App() {
     else return {convertTemperatureTo(inputValue, opositeunit).toFixed(2)}
   }
   return (
-    <ImageBackground source={hotBackgount} style={s.BackgroungImg}>
+    <ImageBackground source={currentBackground} style={s.BackgroungImg}>
       <SafeAreaProvider>
         <SafeAreaView style={s.root}>
           <View style={s.workspace}></View>
